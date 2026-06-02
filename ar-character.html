@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Disney Friend - AR Character</title>
+
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/ar.css">
+
+    <!-- Nodig om .glb 3D-modellen te tonen -->
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+</head>
+<body>
+
+    <main class="app-screen ar-character-screen">
+
+        <!-- Camera beeld -->
+        <video id="cameraVideo" class="camera-video" autoplay playsinline muted></video>
+
+        <!-- Fallback achtergrond als camera niet werkt -->
+        <div class="camera-fallback"></div>
+
+        <!-- Terugknop -->
+        <button class="ar-back-button" id="backToCharactersButton">
+            ←
+        </button>
+
+<!-- Gesprek met Olaf -->
+<div class="conversation-box">
+
+    <div class="speech-bubble" id="speechBubble">
+        Hoi! Ik ben Olaf! Hoe gaat het vandaag?
+    </div>
+
+    <div class="answer-options" id="answerOptions">
+        <!-- Antwoordknoppen komen uit JavaScript -->
+    </div>
+
+    <div class="ar-friendship-hearts" id="arFriendshipHearts">
+    <!-- Hartjes komen uit JavaScript -->
+</div>
+
+</div>
+
+        <!-- Geplaatst character -->
+        <section class="placed-character-area">
+
+            <model-viewer
+                src="./images/models/olaffrozen.glb"
+                alt="Olaf 3D model"
+                class="ar-3d-character"
+                disable-zoom
+                shadow-intensity="1"
+                exposure="1.4"
+                camera-orbit="0deg 80deg 500m"
+                field-of-view="35deg"
+                reveal="auto"
+            ></model-viewer>
+
+        </section>
+
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

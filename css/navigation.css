@@ -1,0 +1,34 @@
+.bottom-nav {
+    position: absolute;
+    z-index: 3;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 72px;
+    background-color: #e8c6ec;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.nav-item {
+    background: transparent;
+    border: none;
+    color: #222;
+    font-size: 11px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    cursor: pointer;
+    opacity: 0.75;
+}
+
+.nav-item.active {
+    opacity: 1;
+    font-weight: bold;
+}
+
+.nav-icon {
+    font-size: 18px;
+}

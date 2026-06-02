@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Disney Friend - AR Scan</title>
+
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/ar.css">
+</head>
+<body>
+
+    <main class="app-screen ar-screen">
+
+        <!-- Camera beeld -->
+        <video id="cameraVideo" class="camera-video" autoplay playsinline muted></video>
+
+        <!-- Fallback achtergrond als camera niet werkt -->
+        <div class="camera-fallback"></div>
+
+        <!-- Terugknop -->
+        <button class="ar-back-button" id="backToCharactersButton">
+            ←
+        </button>
+
+        <!-- Scan overlay -->
+        <section class="scan-overlay">
+
+            <div class="scan-box">
+                <div class="scan-corners"></div>
+            </div>
+
+            <div class="scan-text">
+                <h1>Scan de omgeving</h1>
+                <p>Beweeg de telefoon<br>heen en weer</p>
+            </div>
+
+        </section>
+
+        <!-- Mededeling onderin -->
+        <div class="environment-message">
+            Omgeving gedetecteerd
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

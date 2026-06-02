@@ -1,0 +1,254 @@
+.friendship-screen {
+    background-color: #ffffff;
+}
+
+.friendship-top-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.friendship-content {
+    position: relative;
+    z-index: 2;
+    height: calc(100% - 145px);
+    padding: 70px 24px 92px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 40px 38px;
+    overflow-y: auto;
+}
+
+.friendship-content::-webkit-scrollbar {
+    display: none;
+}
+
+.friendship-content {
+    scrollbar-width: none;
+}
+
+.friendship-card {
+    background-color: #b9dcf5;
+    border-radius: 10px;
+    padding: 12px 10px 8px;
+    aspect-ratio: 1 / 1;
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    transition: transform 0.2s ease;
+}
+
+.friendship-card:hover {
+    transform: scale(1.03);
+}
+
+.friendship-card.best-friend {
+    background-color: #caa1d1;
+}
+
+.friendship-image-box {
+    width: 88%;
+    height: 70%;
+    background-color: #ffffff;
+    border-radius: 8px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.friendship-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.friendship-hearts {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    font-size: 18px;
+    line-height: 1;
+}
+
+.heart {
+    color: #222;
+}
+
+.heart.filled {
+    color: #f04b2f;
+}
+
+/* Detailpagina */
+
+.friendship-detail-screen {
+    background-color: #ffffff;
+}
+
+.detail-top-bar {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 62px;
+    background-color: #d1b6df;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 14px;
+}
+
+.detail-title {
+    font-size: clamp(18px, 5vw, 22px);
+    font-weight: 400;
+    color: #111;
+}
+
+.detail-content {
+    height: calc(100% - 134px);
+    overflow-y: auto;
+    padding-bottom: 20px;
+}
+
+.detail-content::-webkit-scrollbar {
+    display: none;
+}
+
+.detail-content {
+    scrollbar-width: none;
+}
+
+.character-detail-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 24px 18px;
+}
+
+.detail-character-circle {
+    width: clamp(130px, 38vw, 165px);
+    height: clamp(130px, 38vw, 165px);
+    background-color: #b9dcf5;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.detail-character-image {
+    width: 82%;
+    height: 82%;
+    object-fit: contain;
+}
+
+.character-detail-header h2 {
+    font-size: clamp(18px, 5vw, 22px);
+    font-weight: 400;
+    margin-top: 14px;
+    color: #111;
+}
+
+.detail-hearts {
+    display: flex;
+    justify-content: center;
+    gap: clamp(12px, 4vw, 20px);
+    margin-top: 14px;
+    font-size: clamp(28px, 8vw, 34px);
+    line-height: 1;
+}
+
+.detail-hearts .heart {
+    color: #111;
+}
+
+.detail-hearts .heart.filled {
+    color: #f04b2f;
+}
+
+.stats-section {
+    padding: 0 36px 12px;
+}
+
+.stat-item {
+    margin-bottom: 22px;
+}
+
+.stat-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: clamp(13px, 3.5vw, 15px);
+    color: #111;
+    margin-bottom: 6px;
+}
+
+.stat-info span:last-child {
+    font-size: clamp(11px, 3vw, 13px);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background-color: #8ff3ed;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: #218f92;
+    border-radius: 999px;
+}
+
+.achievements-section {
+    border-top: 1px solid #777;
+    padding: 20px 32px 10px;
+}
+
+.achievements-section h3 {
+    font-size: clamp(14px, 4vw, 16px);
+    font-weight: 400;
+    margin-bottom: 18px;
+    color: #111;
+}
+
+.achievements-list {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.achievement {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.achievement-icon {
+    width: clamp(62px, 18vw, 76px);
+    height: clamp(62px, 18vw, 76px);
+    border-radius: 50%;
+    background-color: #c99fd2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(28px, 8vw, 36px);
+    margin-bottom: 8px;
+}
+
+.achievement p {
+    font-size: clamp(11px, 3.3vw, 13px);
+    color: #111;
+    line-height: 1.1;
+}
+
+.achievement.locked {
+    opacity: 0.45;
+}

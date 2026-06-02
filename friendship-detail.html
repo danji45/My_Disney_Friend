@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Disney Friend - Vriendschap details</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/friendships.css">
+    <link rel="stylesheet" href="css/navigation.css">
+</head>
+
+<body>
+
+    <main class="app-screen friendship-detail-screen">
+
+        <header class="detail-top-bar">
+            <button class="back-button" id="backToFriendshipsButton">←</button>
+            <h1 class="detail-title">Vriendschap details</h1>
+        </header>
+
+        <section class="detail-content">
+
+            <section class="character-detail-header">
+                <div class="detail-character-circle">
+                    <img id="detailCharacterImage" src="" alt="Character" class="detail-character-image">
+                </div>
+
+                <h2 id="detailCharacterName">Mickey Mouse</h2>
+
+                <div class="detail-hearts" id="detailHearts">
+                    <!-- Hartjes komen uit JavaScript -->
+                </div>
+            </section>
+
+            <section class="stats-section">
+
+                <div class="stat-item">
+                    <div class="stat-info">
+                        <span>Tijd samen</span>
+                        <span>2 uur</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 58%;"></div>
+                    </div>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-info">
+                        <span>Interacties</span>
+                        <span>40/60</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 75%;"></div>
+                    </div>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-info">
+                        <span>Foto's gemaakt</span>
+                        <span>3</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 32%;"></div>
+                    </div>
+                </div>
+
+            </section>
+
+            <section class="achievements-section">
+                <h3>Prestaties</h3>
+
+                <div class="achievements-list">
+
+                    <article class="achievement">
+                        <div class="achievement-icon">
+                            🤝
+                        </div>
+                        <p>Eerste<br>ontmoeting</p>
+                    </article>
+
+                    <article class="achievement">
+                        <div class="achievement-icon">
+                            📷
+                        </div>
+                        <p>Eerste foto</p>
+                    </article>
+
+                    <article class="achievement locked">
+                        <div class="achievement-icon">
+                            🏰
+                        </div>
+                        <p>Beste<br>vrienden</p>
+                    </article>
+
+                </div>
+            </section>
+
+        </section>
+
+        <nav class="bottom-nav">
+            <button class="nav-item" id="navHomeButton">
+                <span class="nav-icon">⌂</span>
+                <span>Home</span>
+            </button>
+
+            <button class="nav-item active" id="navCharactersButton">
+                <span class="nav-icon">👥</span>
+                <span>Personages</span>
+            </button>
+        </nav>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
