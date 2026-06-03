@@ -44,21 +44,31 @@
 </div>
 
         <!-- Geplaatst character -->
-        <section class="placed-character-area">
+<section class="placed-character-area">
 
-            <model-viewer
-                src="./images/models/olaffrozen.glb"
-                alt="Olaf 3D model"
-                class="ar-3d-character"
-                disable-zoom
-                shadow-intensity="1"
-                exposure="1.4"
-                camera-orbit="0deg 80deg 500m"
-                field-of-view="35deg"
-                reveal="auto"
-            ></model-viewer>
+    <model-viewer
+        src="./images/models/olaffrozen.glb"
+        alt="Olaf 3D model"
+        class="ar-3d-character"
+        ar
+        ar-modes="webxr scene-viewer quick-look"
+        ar-placement="floor"
+        ar-scale="fixed"
+        disable-zoom
+        shadow-intensity="1"
+        exposure="1.4"
+        camera-orbit="0deg 80deg 500m"
+        field-of-view="35deg"
+        reveal="auto"
+    >
 
-        </section>
+        <button slot="ar-button" class="place-on-floor-button">
+            Plaats Olaf op de grond
+        </button>
+
+    </model-viewer>
+
+</section>
 
 
     </main>
