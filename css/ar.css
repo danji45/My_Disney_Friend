@@ -369,3 +369,303 @@ model-viewer {
 .ar-friendship-hearts .heart.filled {
     color: #f04b2f;
 }
+/* ========================= */
+/* AR ALGEMEEN */
+/* ========================= */
+
+.ar-screen,
+.ar-character-screen {
+    position: relative;
+    background-color: #111;
+    overflow: hidden;
+}
+
+/* Camera beeld */
+.camera-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+/* Fallback als camera niet werkt */
+.camera-fallback {
+    position: absolute;
+    inset: 0;
+    background-image: url("../images/street.jpg");
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+}
+
+/* Terugknop linksboven */
+.ar-back-button {
+    position: absolute;
+    top: 18px;
+    left: 14px;
+    z-index: 30;
+
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 3px solid #1d7f86;
+    background-color: #b9dcf5;
+    color: #111;
+
+    font-size: 28px;
+    line-height: 28px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+/* ========================= */
+/* AR SCAN SCHERM */
+/* ========================= */
+
+.scan-overlay {
+    position: absolute;
+    z-index: 3;
+    left: 50%;
+    top: 42%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Gestippelde scan box */
+.scan-box {
+    width: clamp(220px, 66vw, 270px);
+    height: clamp(220px, 66vw, 270px);
+    border: 6px dotted #111;
+    border-radius: 18px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Hoekjes in het midden */
+.scan-corners {
+    width: 92px;
+    height: 92px;
+    position: relative;
+}
+
+.scan-corners::before,
+.scan-corners::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(#111, #111) left top / 34px 5px no-repeat,
+        linear-gradient(#111, #111) left top / 5px 34px no-repeat,
+        linear-gradient(#111, #111) right top / 34px 5px no-repeat,
+        linear-gradient(#111, #111) right top / 5px 34px no-repeat,
+        linear-gradient(#111, #111) left bottom / 34px 5px no-repeat,
+        linear-gradient(#111, #111) left bottom / 5px 34px no-repeat,
+        linear-gradient(#111, #111) right bottom / 34px 5px no-repeat,
+        linear-gradient(#111, #111) right bottom / 5px 34px no-repeat;
+}
+
+/* Tekst onder scan box */
+.scan-text {
+    margin-top: 18px;
+    color: #ffffff;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+}
+
+.scan-text h1 {
+    font-size: clamp(19px, 5vw, 23px);
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.scan-text p {
+    font-size: clamp(18px, 5vw, 22px);
+    line-height: 1.25;
+}
+
+/* Mededeling onderin */
+.environment-message {
+    position: absolute;
+    z-index: 4;
+    left: 50%;
+    bottom: 68px;
+    transform: translateX(-50%);
+
+    background-color: #caa1d1;
+    color: #111;
+    border: 3px solid #74477d;
+    border-radius: 10px;
+
+    padding: 16px 22px;
+    font-size: clamp(15px, 4vw, 18px);
+    white-space: nowrap;
+    text-align: center;
+}
+
+/* ========================= */
+/* AR CHARACTER SCHERM */
+/* ========================= */
+
+/* Gesprek bovenin */
+.conversation-box {
+    position: absolute;
+    z-index: 20;
+
+    left: 50%;
+    top: 80px;
+    transform: translateX(-50%);
+
+    width: 86%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+/* Tekstwolk */
+.speech-bubble {
+    position: relative;
+
+    width: 100%;
+    min-height: 58px;
+
+    background-color: rgba(255, 255, 255, 0.94);
+    border: 3px solid #111;
+    border-radius: 22px;
+
+    padding: 14px 16px;
+
+    color: #111;
+    font-size: clamp(15px, 4vw, 18px);
+    text-align: left;
+    line-height: 1.25;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* Puntje van tekstwolk */
+.speech-bubble::after {
+    content: "";
+    position: absolute;
+
+    right: 35px;
+    bottom: -18px;
+
+    width: 0;
+    height: 0;
+
+    border-left: 16px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 18px solid #111;
+}
+
+/* Hartjes in AR */
+.ar-friendship-hearts {
+    display: flex;
+    gap: 8px;
+    margin-left: 8px;
+    font-size: 24px;
+    line-height: 1;
+}
+
+.ar-friendship-hearts .heart {
+    color: #111;
+}
+
+.ar-friendship-hearts .heart.filled {
+    color: #f04b2f;
+}
+
+/* Antwoord opties */
+.answer-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 6px;
+}
+
+.answer-button {
+    background-color: rgba(255, 255, 255, 0.95);
+    color: #111;
+
+    border: 2px solid #caa1d1;
+    border-radius: 14px;
+
+    padding: 10px 14px;
+
+    font-size: clamp(14px, 3.8vw, 16px);
+    text-align: left;
+    cursor: pointer;
+
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.answer-button:active {
+    transform: scale(0.97);
+}
+
+/* Gebied waar Olaf staat */
+.placed-character-area {
+    position: absolute;
+    z-index: 10;
+
+    left: 50%;
+    bottom: 8px;
+    transform: translateX(-50%);
+
+    width: 88%;
+    height: 68%;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    pointer-events: none;
+}
+
+/* Schaduw onder Olaf */
+.ground-shadow {
+    position: absolute;
+    z-index: 1;
+
+    left: 50%;
+    bottom: 35px;
+    transform: translateX(-50%);
+
+    width: 130px;
+    height: 30px;
+
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    filter: blur(4px);
+}
+
+/* 3D model */
+.ar-3d-character {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    height: 100%;
+
+    background: transparent;
+    --poster-color: transparent;
+}
+
+/* Model-viewer achtergrond transparant */
+model-viewer {
+    background-color: transparent;
+    --poster-color: transparent;
+}

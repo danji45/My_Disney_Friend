@@ -285,6 +285,7 @@ if (cameraVideo) {
         })
         .then(function (stream) {
             cameraVideo.srcObject = stream;
+            cameraVideo.play();
         })
         .catch(function (error) {
             console.log("Camera kon niet geopend worden:", error);
