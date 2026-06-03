@@ -275,25 +275,64 @@ if (backToCharactersButton) {
     });
 }
 
-if (cameraVideo) {
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        navigator.mediaDevices.getUserMedia({
+async function startCamera() {
+    if (!cameraVideo) {
+        return;
+    }
+
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        console.log("Camera wordt niet ondersteund door deze browser.");
+        return;
+    }
+
+    try {
+        const stream = await navigator.mediaDevices.getUserMedia({
             video: {
-                facingMode: "environment"
+                facingMode: { ideal: "environment" }
             },
             audio: false
-        })
-        .then(function (stream) {
-            cameraVideo.srcObject = stream;
-            cameraVideo.play();
-        })
-        .catch(function (error) {
-            console.log("Camera kon niet geopend worden:", error);
         });
-    } else {
-        console.log("Camera wordt niet ondersteund door deze browser.");
+
+        cameraVideo.srcObject = stream;
+
+        cameraVideo.onloadedmetadata = function () {
+            cameraVideo.play()
+                .then(function () {
+                    console.log("Camera gestart");
+                })
+                .catch(function (error) {
+                    console.log("Video play fout:", error);
+                });
+        };
+
+    } catch (error) {
+        console.log("Achtercamera werkte niet, probeer gewone camera:", error);
+
+        try {
+            const fallbackStream = await navigator.mediaDevices.getUserMedia({
+                video: true,
+                audio: false
+            });
+
+            cameraVideo.srcObject = fallbackStream;
+
+            cameraVideo.onloadedmetadata = function () {
+                cameraVideo.play()
+                    .then(function () {
+                        console.log("Fallback camera gestart");
+                    })
+                    .catch(function (error) {
+                        console.log("Fallback video play fout:", error);
+                    });
+            };
+
+        } catch (fallbackError) {
+            console.log("Camera kon helemaal niet geopend worden:", fallbackError);
+        }
     }
 }
+
+startCamera();
 
 
 /* ========================= */
@@ -335,10 +374,6 @@ function increaseFriendship() {
     talkCount++;
     localStorage.setItem(`talkCount_${selectedCharacterKey}`, talkCount);
 
-    /*
-        Elke 3 antwoorden = 1 hartje erbij.
-        Maximaal 5 hartjes.
-    */
     if (talkCount % 3 === 0 && currentLevel < 5) {
         const newLevel = currentLevel + 1;
 
@@ -355,152 +390,92 @@ const conversation = {
     start: {
         text: "Hoi! Ik ben Olaf! Hoe gaat het vandaag?",
         answers: [
-            {
-                text: "Gaat goed!",
-                next: "goed"
-            },
-            {
-                text: "Gaat wat minder",
-                next: "minder"
-            },
-            {
-                text: "Wie ben jij?",
-                next: "wie"
-            }
+            { text: "Gaat goed!", next: "goed" },
+            { text: "Gaat wat minder", next: "minder" },
+            { text: "Wie ben jij?", next: "wie" }
         ]
     },
 
     goed: {
         text: "Wat fijn om te horen! Daar word ik helemaal blij van. Zullen we samen iets leuks doen?",
         answers: [
-            {
-                text: "Ja, laten we op avontuur gaan!",
-                next: "avontuur"
-            },
-            {
-                text: "Ik wil gewoon even praten",
-                next: "praten"
-            }
+            { text: "Ja, laten we op avontuur gaan!", next: "avontuur" },
+            { text: "Ik wil gewoon even praten", next: "praten" }
         ]
     },
 
     minder: {
         text: "Oh nee, dat is niet fijn. Ik blijf wel even bij je. Soms helpt een warme knuffel!",
         answers: [
-            {
-                text: "Dankjewel Olaf",
-                next: "dankje"
-            },
-            {
-                text: "Kun je me opvrolijken?",
-                next: "opvrolijken"
-            }
+            { text: "Dankjewel Olaf", next: "dankje" },
+            { text: "Kun je me opvrolijken?", next: "opvrolijken" }
         ]
     },
 
     wie: {
         text: "Ik ben Olaf! Ik hou van warme knuffels, sneeuw en nieuwe vrienden maken.",
         answers: [
-            {
-                text: "Leuk om je te ontmoeten!",
-                next: "ontmoeten"
-            },
-            {
-                text: "Wat kun je doen?",
-                next: "kunnen"
-            }
+            { text: "Leuk om je te ontmoeten!", next: "ontmoeten" },
+            { text: "Wat kun je doen?", next: "kunnen" }
         ]
     },
 
     avontuur: {
         text: "Jaaa! Kijk om je heen, misschien vinden we samen iets magisch in deze omgeving.",
         answers: [
-            {
-                text: "Nog een keer praten",
-                next: "start"
-            }
+            { text: "Nog een keer praten", next: "start" }
         ]
     },
 
     praten: {
         text: "Natuurlijk! Ik luister graag. Soms is samen praten al genoeg.",
         answers: [
-            {
-                text: "Dat is lief",
-                next: "dankje"
-            },
-            {
-                text: "Terug naar begin",
-                next: "start"
-            }
+            { text: "Dat is lief", next: "dankje" },
+            { text: "Terug naar begin", next: "start" }
         ]
     },
 
     dankje: {
         text: "Altijd! Daar zijn vrienden voor.",
         answers: [
-            {
-                text: "Terug naar begin",
-                next: "start"
-            }
+            { text: "Terug naar begin", next: "start" }
         ]
     },
 
     opvrolijken: {
         text: "Oké! Wist je dat ik ooit een hele zomer wilde meemaken? Ik dacht dat dat super gezellig zou zijn!",
         answers: [
-            {
-                text: "Haha Olaf!",
-                next: "lach"
-            },
-            {
-                text: "Terug naar begin",
-                next: "start"
-            }
+            { text: "Haha Olaf!", next: "lach" },
+            { text: "Terug naar begin", next: "start" }
         ]
     },
 
     ontmoeten: {
         text: "Ik vind het ook heel leuk om jou te ontmoeten. Volgens mij worden wij goede vrienden!",
         answers: [
-            {
-                text: "Terug naar begin",
-                next: "start"
-            }
+            { text: "Terug naar begin", next: "start" }
         ]
     },
 
     kunnen: {
         text: "Ik kan met je praten, reageren op keuzes en straks misschien zelfs met je meelopen in AR.",
         answers: [
-            {
-                text: "Cool!",
-                next: "cool"
-            },
-            {
-                text: "Terug naar begin",
-                next: "start"
-            }
+            { text: "Cool!", next: "cool" },
+            { text: "Terug naar begin", next: "start" }
         ]
     },
 
     lach: {
         text: "Zie je! Een beetje lachen helpt soms echt.",
         answers: [
-            {
-                text: "Terug naar begin",
-                next: "start"
-            }
+            { text: "Terug naar begin", next: "start" }
         ]
     },
 
     cool: {
         text: "Ja toch! Dit wordt een magisch avontuur.",
         answers: [
-            {
-                text: "Terug naar begin",
-                next: "start"
-            }
+            { text: "Terug naar begin", next: "start" }
         ]
     }
 };

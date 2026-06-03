@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/ar.css">
 
-    <!-- Nodig om .glb 3D-modellen te tonen -->
+    <!-- Nodig om .glb 3D-modellen te tonen en AR te openen -->
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
@@ -16,7 +16,7 @@
     <main class="app-screen ar-character-screen">
 
         <!-- Camera beeld -->
-        <video id="cameraVideo" class="camera-video" autoplay playsinline muted></video>
+        <video id="cameraVideo" class="camera-video" autoplay playsinline webkit-playsinline muted></video>
 
         <!-- Fallback achtergrond als camera niet werkt -->
         <div class="camera-fallback"></div>
@@ -43,22 +43,31 @@
 
         </div>
 
-        <!-- Olaf op de camera-overlay -->
+        <!-- Olaf preview + echte AR knop -->
         <section class="placed-character-area">
 
             <div class="ground-shadow"></div>
 
             <model-viewer
+                id="olafModel"
                 src="./images/models/olaffrozen.glb"
                 alt="Olaf 3D model"
                 class="ar-3d-character"
+                ar
+                ar-modes="scene-viewer quick-look webxr"
+                ar-placement="floor"
+                ar-scale="fixed"
                 disable-zoom
                 shadow-intensity="1"
                 exposure="1.4"
                 camera-orbit="0deg 80deg 500m"
                 field-of-view="35deg"
                 reveal="auto"
-            ></model-viewer>
+            >
+                <button slot="ar-button" class="open-ar-button">
+                    Open echte AR
+                </button>
+            </model-viewer>
 
         </section>
 
