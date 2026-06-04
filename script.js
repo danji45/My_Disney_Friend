@@ -513,3 +513,19 @@ if (speechBubble && answerOptions) {
     renderArFriendshipHearts();
     showConversationStep("start");
 }
+/* ========================= */
+/* ECHTE AR OPENEN */
+/* ========================= */
+
+const openArButton = document.getElementById("openArButton");
+const olafModel = document.getElementById("olafModel");
+
+if (openArButton && olafModel) {
+    openArButton.addEventListener("click", function () {
+        if (olafModel.canActivateAR) {
+            olafModel.activateAR();
+        } else {
+            alert("Echte AR werkt alleen op een telefoon met AR-ondersteuning. Op laptop zie je alleen de preview.");
+        }
+    });
+}
